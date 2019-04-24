@@ -7,8 +7,7 @@
 </head>
 <body>
 	<div id='piemenu' data-wheelnav data-wheelnav-slicepath='DonutSlice'
-	data-wheelnav-rotateoff data-wheelnav-navangle='270'
-	data-wheelnav-cssmode data-wheelnav-init>
+	data-wheelnav-rotateoff data-wheelnav-cssmode data-wheelnav-init>
 	</div>
 	<script>
 		const { ipcRenderer } = require('electron');
@@ -17,8 +16,7 @@
 		});
 
 		ipcRenderer.on('window:hide', (event) => {
-			unloadMenu()
-			console.log("Success!");
+			unloadMenu();
 		});
 	</script>
 </body>
