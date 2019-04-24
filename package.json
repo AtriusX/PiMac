@@ -1,0 +1,35 @@
+{
+  "name": "pimac",
+  "version": "1.0.0",
+  "description": "Bring pie menus to all your applications!",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "Atrius",
+  "license": "GPL-3.0",
+  "dependencies": {
+    "electron": "^4.1.4",
+    "electron-togglify-window": "^0.1.0",
+    "iohook": "^0.4.4",
+    "raphael": "^2.2.8",
+    "wheelnav": "^1.7.1"
+  },
+  "devDependencies": {
+    "electron-packager": "^13.1.1"
+  },
+  "iohook": {
+    "targets": [
+      "node-64",
+      "electron-69"
+    ],
+    "platforms": [
+      "win32",
+      "darwin"
+    ],
+    "arches": [
+      "x64",
+      "ia32"
+    ]
+  }
+}

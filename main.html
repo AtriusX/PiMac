@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>PiMac</title>
+	<link rel="stylesheet" type="text/css" href="style.css"/>
+	<script type="text/javascript" src="wheel.js"></script>
+</head>
+<body>
+	<div id='piemenu' data-wheelnav data-wheelnav-slicepath='DonutSlice'
+	data-wheelnav-rotateoff data-wheelnav-navangle='270'
+	data-wheelnav-cssmode data-wheelnav-init>
+	</div>
+	<script>
+		const { ipcRenderer } = require('electron');
+		ipcRenderer.on('window:show', (event, options, point, bounds) => {
+			loadMenu(options, point, bounds);
+		});
+
+		ipcRenderer.on('window:hide', (event) => {
+			unloadMenu()
+			console.log("Success!");
+		});
+	</script>
+</body>
+</html>
