@@ -23,12 +23,16 @@ app.on('ready', function() {
 		ioHook.on('keydown', (event) => {
 			// Keycode 15 = TAB
 			if (event.keycode == 15 && !active) {
+				var disp = screen.getDisplayNearestPoint(screen.getCursorScreenPoint());
+				// Move window to active screen
+				mainWindow.setPosition(disp.workArea.x, disp.workArea.y);
+				mainWindow.maximize();
 				// Send the wheel data to the UI
 				mainWindow.webContents.send(
 					"window:show", 
 					["Option 1", "Option 2", "Option 3", "Option 4", "Option 5", "Option 6"], 
 					screen.getCursorScreenPoint(), 
-					mainWindow.getBounds()
+					disp
 				);
 				mainWindow.setIgnoreMouseEvents(false);
 				// Keep the wheel from refreshing when the key is held down

@@ -1,7 +1,7 @@
 const nav = require('wheelnav')
 const Raphael = require('raphael')
 
-function loadMenu(options, point) {
+function loadMenu(options, point, disp) {
 	const { ipcRenderer } = require('electron');
 	var piemenu = new wheelnav('piemenu');
 	// piemenu.sliceInitPathFunction = piemenu.slicePathFunction;
@@ -17,8 +17,9 @@ function loadMenu(options, point) {
 	var {x, y} = point
 	var d = document.getElementById('piemenu');
 	d.style.position = "absolute";
-	d.style.top = y - 200 + "px";
-	d.style.left = x - 200 + "px";
+	
+	d.style.top = (y < 0 ? y + disp.bounds.height : y) - disp.bounds.y - 200 + "px";
+	d.style.left = x - disp.bounds.x - 200 + "px";							
 };
 
 function unloadMenu() {
