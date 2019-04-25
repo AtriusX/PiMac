@@ -14,7 +14,7 @@ app.on('ready', function() {
 
 	wheelWindow.loadURL(url.format({
 		pathname: path.join(__dirname, 'main.html'),
-		protocol: 'file', slashes: true
+		protocol: 'file', slashes: true	
 	}));
 
 	wheelWindow.webContents.on('dom-ready', () => {
@@ -23,7 +23,6 @@ app.on('ready', function() {
 		ioHook.on('keydown', (event) => {
 			// Keycode 15 = TAB
 			if (event.keycode == 15 && !active) {
-				wheelWindow.minimize();
 				var disp = screen.getDisplayNearestPoint(screen.getCursorScreenPoint());
 				// Move window to active screen
 				wheelWindow.setPosition(disp.workArea.x, disp.workArea.y);
@@ -32,15 +31,16 @@ app.on('ready', function() {
 				wheelWindow.webContents.send(
 					"window:show", 
 					["Option 1", "Option 2", "Option 3", "Option 4", "Option 5", "Option 6"], 
-					screen.getCursorScreenPoint(), 
+					screen.getCursorScreenPoint(), 	
 					disp
 				);
 				wheelWindow.setIgnoreMouseEvents(false);
-				wheelWindow.focus();
+				wheelWindow.minimize();
+				wheelWindow.focus();	
 				// Keep the wheel from refreshing when the key is held down
 				active = true;
 			}
-		});
+		});	
 
 		// Hide the screen after the key is released
 		ioHook.on('keyup', (event) => {
@@ -48,7 +48,7 @@ app.on('ready', function() {
 				wheelWindow.webContents.send("window:hide");
 				wheelWindow.setIgnoreMouseEvents(true, false);
 				// Deactivate the window
-				active = false;
+				active = false;	
 			}
 		});
 		// Start ioHook
@@ -69,6 +69,6 @@ app.on('ready', function() {
 // TODO Detecting the last hovered element and executing the command associated to it
 // TODO Program detection and keybind/macro config
 // TODO Settings window
-// TODO show application specific pie menu with macros
+// TODO show application specific pie menu with macros					
 // TODO prevent text input spam when window is visible (fixed mostly)
 // TODO create spacing between nav elements

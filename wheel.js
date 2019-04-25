@@ -9,7 +9,7 @@ function loadMenu(options, point, display) {
 	piemenu.initPercent = 1;
 	piemenu.animatetime = 0;
 	piemenu.selectedNavItemIndex = null;
-	
+
 	var angle = sliceAngle(point, display, options.length);
 	console.log(angle);
 	if (angle != 0) {
@@ -25,7 +25,7 @@ function loadMenu(options, point, display) {
 	piemenu.createWheel(options);
 	piemenu.navItems.forEach(n => {
 		n.navigateFunction = () => {
-			unloadMenu(piemenu);	
+			unloadMenu(piemenu);		
 			ipcRenderer.send('window:hidden');
 		}
 	});	
@@ -64,8 +64,7 @@ function rotation(point, display) {
 	var boundX = display.bounds.x;
 	var boundY = display.bounds.y;
 	var { atLeft, atRight, atTop, atBottom } = false;
-
-
+		
 	if (x < boundX + EDGE_BUFFER) 		   atLeft = true;
 	if (x > boundX + width - EDGE_BUFFER)  atRight = true;
 	if (y < boundY + EDGE_BUFFER) 		   atTop = true;
