@@ -13,14 +13,14 @@ app.on('ready', function() {
 	});
 
 	wheelWindow.loadURL(url.format({
-		pathname: path.join(__dirname, 'main.html'),
+		pathname: path.join(__dirname, 'wheel.html'),
 		protocol: 'file', slashes: true	
 	}));
 
 	wheelWindow.webContents.on('dom-ready', () => {
 		var active = false;
 		// Show window when key is pressed
-		ioHook.on('keydown', (event) => {
+		ioHook.on('keydown', (event) => {	
 			// Keycode 15 = TAB
 			if (event.keycode == 15 && !active) {
 				var disp = screen.getDisplayNearestPoint(screen.getCursorScreenPoint());
