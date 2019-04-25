@@ -4,19 +4,23 @@
   "description": "Bring pie menus to all your applications!",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "fix": "node_modules/.bin/electron-rebuild"
   },
   "author": "Atrius",
   "license": "GPL-3.0",
   "dependencies": {
+    "active-win": "^5.0.0",
     "electron": "^4.1.4",
     "electron-togglify-window": "^0.1.0",
+    "ffi-napi": "^2.4.5",
     "iohook": "^0.4.4",
     "raphael": "^2.2.8",
     "wheelnav": "^1.7.1"
   },
   "devDependencies": {
-    "electron-packager": "^13.1.1"
+    "electron-packager": "^13.1.1",
+    "electron-rebuild": "^1.8.4"
   },
   "iohook": {
     "targets": [

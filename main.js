@@ -1,8 +1,9 @@
-const electron = require('electron');
-const url	   = require('url');
-const path 	   = require('path');
-const ioHook   = require('iohook');
+const electron  = require('electron');
+const url	    = require('url');
+const path 	    = require('path');
+const ioHook    = require('iohook');
 const { app, BrowserWindow, ipcMain } = electron
+const activeWin = require('active-win');
 
 let wheelWindow;
 
@@ -23,16 +24,17 @@ app.on('ready', function() {
 		ioHook.on('keydown', (event) => {	
 			// Keycode 15 = TAB
 			if (event.keycode == 15 && !active) {
-				var disp = screen.getDisplayNearestPoint(screen.getCursorScreenPoint());
+				console.log(activeWin.sync());
+				
+				var display = screen.getDisplayNearestPoint(screen.getCursorScreenPoint());
 				// Move window to active screen
-				wheelWindow.setPosition(disp.workArea.x, disp.workArea.y);
+				wheelWindow.setPosition(display.workArea.x, display.workArea.y);
 				wheelWindow.maximize();
 				// Send the wheel data to the UI
 				wheelWindow.webContents.send(
 					"window:show", 
 					["Option 1", "Option 2", "Option 3", "Option 4", "Option 5", "Option 6"], 
-					screen.getCursorScreenPoint(), 	
-					disp
+					screen.getCursorScreenPoint(), display
 				);
 				wheelWindow.setIgnoreMouseEvents(false);
 				wheelWindow.minimize();
@@ -71,4 +73,3 @@ app.on('ready', function() {
 // TODO Settings window
 // TODO show application specific pie menu with macros					
 // TODO prevent text input spam when window is visible (fixed mostly)
-// TODO create spacing between nav elements
