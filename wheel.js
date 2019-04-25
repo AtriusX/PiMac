@@ -9,6 +9,7 @@ function loadMenu(options, point, display) {
 	piemenu.initPercent = 1;
 	piemenu.animatetime = 0;
 	piemenu.selectedNavItemIndex = null;
+	piemenu.wheelRadius = piemenu.wheelRadius * 1.1;
 
 	var angle = sliceAngle(point, display, options.length);
 	console.log(angle);
@@ -18,8 +19,6 @@ function loadMenu(options, point, display) {
 		piemenu.titleRotateAngle = 0;
 		piemenu.navAngle = angle / 2 + rotation(point, display, options.length);
 	} 
-	
-	piemenu.wheelRadius = piemenu.wheelRadius * 1.1;
 	
 	// piemenu.navAngle = rotation(point, display, options.length);
 	piemenu.createWheel(options);
@@ -53,7 +52,8 @@ function sliceAngle(point, display, itemCount) {
 		atEdge = true;
 	}
 	// Calculate top/bottom edge/corner values
-	if (y < display.bounds.y + EDGE_BUFFER || y > display.bounds.y + height - EDGE_BUFFER) angle = (atEdge ? 90 : 180) / itemCount;
+	if (y < display.bounds.y + EDGE_BUFFER || y > display.bounds.y + height - EDGE_BUFFER) 
+		angle = (atEdge ? 90 : 180) / itemCount;
 
 	return angle;
 }
