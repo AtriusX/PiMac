@@ -23,6 +23,7 @@ app.on('ready', function() {
 		ioHook.on('keydown', (event) => {
 			// Keycode 15 = TAB
 			if (event.keycode == 15 && !active) {
+				wheelWindow.minimize();
 				var disp = screen.getDisplayNearestPoint(screen.getCursorScreenPoint());
 				// Move window to active screen
 				wheelWindow.setPosition(disp.workArea.x, disp.workArea.y);
@@ -35,10 +36,12 @@ app.on('ready', function() {
 					disp
 				);
 				wheelWindow.setIgnoreMouseEvents(false);
+				wheelWindow.focus();
 				// Keep the wheel from refreshing when the key is held down
 				active = true;
 			}
 		});
+
 		// Hide the screen after the key is released
 		ioHook.on('keyup', (event) => {
 			if (event.keycode == 15) {	
@@ -57,6 +60,7 @@ app.on('ready', function() {
 		});
 	});
 
+	wheelWindow.setIgnoreMouseEvents(true, false);
 	wheelWindow.maximize();
 	wheelWindow.show();
 	// wheelWindow.webContents.openDevTools();
@@ -66,3 +70,5 @@ app.on('ready', function() {
 // TODO Program detection and keybind/macro config
 // TODO Settings window
 // TODO show application specific pie menu with macros
+// TODO prevent text input spam when window is visible (fixed mostly)
+// TODO create spacing between nav elements
