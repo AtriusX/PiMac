@@ -11,8 +11,8 @@
 	</div>
 	<script>
 		const { ipcRenderer } = require('electron');
-		ipcRenderer.on('window:show', (event, options, point, disp) => {
-			loadMenu(options, point, disp);
+		ipcRenderer.on('window:show', (event, options, point, display) => {
+			loadMenu(options, point, display);
 		});
 
 		ipcRenderer.on('window:hide', (event) => {
