@@ -1,29 +1,32 @@
-const nav = require('wheelnav')
+const nav 	  = require('wheelnav')
 const Raphael = require('raphael')
 
 const EDGE_BUFFER = 200;
 
 function loadMenu(options, point, display) {
 	const { ipcRenderer } = require('electron');
-	var piemenu = new wheelnav('piemenu');
-	piemenu.initPercent = 1;
-	piemenu.animatetime = 0;
-	piemenu.selectedNavItemIndex = null;
-	piemenu.wheelRadius = piemenu.wheelRadius * 1.1;
+	try {
+		var piemenu = new wheelnav('piemenu');
+		piemenu.initPercent = 1;	
+		piemenu.animatetime = 0;
+		piemenu.selectedNavItemIndex = null;	
+		piemenu.wheelRadius = piemenu.wheelRadius * 1.1;	
+		// Set menu angle
+		var angle = sliceAngle(point, display, options.length);
+		if (angle != 0) {	
+			piemenu.navItemsContinuous = true;
+			piemenu.sliceAngle = angle;
+			piemenu.titleRotateAngle = 0;
+			piemenu.navAngle = angle / 2 + rotation(point, display, options.length);
+		} 
+		// piemenu.navAngle = rotation(point, display, options.length);
+		piemenu.createWheel(options);
+	} 			
+	// Prevent random error spam from Raphael
+	catch(err) {}		
 
-	var angle = sliceAngle(point, display, options.length);
-	console.log(angle);
-	if (angle != 0) {
-		piemenu.navItemsContinuous = true;
-		piemenu.sliceAngle = angle;
-		piemenu.titleRotateAngle = 0;
-		piemenu.navAngle = angle / 2 + rotation(point, display, options.length);
-	} 
-	
-	// piemenu.navAngle = rotation(point, display, options.length);
-	piemenu.createWheel(options);
 	piemenu.navItems.forEach(n => {
-		n.navigateFunction = () => {
+		n.navigateFunction = () => {	
 			unloadMenu(piemenu);		
 			ipcRenderer.send('window:hidden');
 		}
