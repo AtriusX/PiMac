@@ -13,7 +13,7 @@ app.on('ready', function() {
 	});
 
 	wheelWindow.loadURL(url.format({
-		pathname: path.join(__dirname, 'wheel.html'),
+		pathname: path.join(__dirname, 'render/wheel.html'),
 		protocol: 'file', slashes: true
 	}));
 

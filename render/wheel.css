@@ -7,9 +7,9 @@ body {
 
 [class|=wheelnav-piemenu-slice-basic] { fill: #2c2e2c; stroke: none; }
 [class|=wheelnav-piemenu-slice-selected] { fill: #2c2e2c; stroke: none; }
-[class|=wheelnav-piemenu-slice-hover] { fill: #8e938e;  stroke: none; fill-opacity: 0.77; cursor: pointer; }
+[class|=wheelnav-piemenu-slice-hover] { fill: #8e938e;  stroke: none; fill-opacity: 0.7; cursor: pointer; }
 [class|=wheelnav-piemenu-title-basic] { fill: #ddd; stroke: none; }	
 [class|=wheelnav-piemenu-title-selected] { fill: #fff; stroke: none; }
 [class|=wheelnav-piemenu-title-hover] { fill: #ddd; stroke: none; cursor: pointer; }
 [class|=wheelnav-piemenu-title] > tspan { font-family: sans-serif; font-size: 12px; }
-[class|=wheelnav] { stroke: #ffffff33; stroke-width: 1px; }
+[class|=wheelnav] { stroke: #ffffff22; stroke-width: 1px; }				

@@ -61,13 +61,11 @@ function sliceAngle(point, display, itemCount) {
 	return angle;
 }
 
-function rotation(point, display) {
+function rotation(point, display) {			
 	var { x, y } = point;
-	var { height, width } = display.bounds;
-	var boundX = display.bounds.x;
-	var boundY = display.bounds.y;
+	var {height, width, x: boundX, y: boundY} = display.bounds;
 	var { atLeft, atRight, atTop, atBottom } = false;
-		
+									
 	if (x < boundX + EDGE_BUFFER) 		   atLeft = true;
 	if (x > boundX + width - EDGE_BUFFER)  atRight = true;
 	if (y < boundY + EDGE_BUFFER) 		   atTop = true;
