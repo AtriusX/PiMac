@@ -6,10 +6,10 @@ const processWindows = require('node-process-windows');
 var pid = 0;
 
 exports.set = function() {
-    pid = activeWin.sync().owner.processId; 
+    var proc = activeWin.sync().owner.processId; 
+    pid = proc != process.pid ? proc : pid;    
 }   
 
 exports.focus = function() {
-    if (pid == process.pid) return;
     processWindows.focusWindow(pid);
 }

@@ -1,22 +1,24 @@
-const electron  = require('electron');
-const url	    = require('url');
-const path 	    = require('path');
-const ioHook    = require('iohook');
-const process   = require('./system/process');
-const { app, BrowserWindow, ipcMain } = electron
+const url	     = require('url');
+const path 	     = require('path');
+const process    = require('./system/process');
+const ioHook     = require('iohook');
+const trayWindow = require('electron-tray-window');
+const { app, BrowserWindow, ipcMain, Tray } = require('electron')
 
 const TRIGGER_KEY = 15;
 
 let wheelWindow, settingWindow;
 
 app.on('ready', () => {
+	process.set();
 	// Initialize the window
 	wheelWindow = initWindow("render/wheel/wheel.html", {
-		transparent: true, frame: false, skipTaskbar: true, alwaysOnTop: true, ignoreEvents: true
+		transparent: true, frame: false, skipTaskbar: true, 
+		alwaysOnTop: true, ignoreEvents: true
 	});
 
 	wheelWindow.webContents.on('dom-ready', () => {
-		const { screen } = electron;
+		const { screen } = require('electron');
 
 		var active = false;
 		// Show window when key is pressed
@@ -59,19 +61,22 @@ app.on('ready', () => {
 	});
 
 	settingWindow = initWindow("render/settings/settings.html", {
-		tray: true
+		frame: false, skipTaskbar: true, alwaysOnTop: true, 
+		resizable: false, icon: "resources/icon.png", tray: true
 	});
 });
 
 function initWindow(file, options) {
 	var win = new BrowserWindow(options);
-	win.loadURL(url.format({ pathname: path.join(__dirname, file) }));
+	win.loadURL(path.join(__dirname, file));
 	// Initialize with no mouse events enabled
 	if (options.ignoreEvents != undefined)
 		ignoreEvents(win, options.ignoreEvents);
 	// Initialize as a tray window
 	if (options.tray != undefined && options.tray) {
-		// TODO Tray windowing
+		trayWindow.setOptions({
+			tray: new Tray(path.join(__dirname, options.icon)), window: win
+		});
 	}
 	return win;
 }
