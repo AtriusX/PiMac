@@ -2,7 +2,7 @@
   "name": "pimac",
   "version": "1.0.0",
   "description": "Bring pie menus to all your applications!",
-  "main": "main.js",
+  "main": "src/main.js",
   "scripts": {
     "start": "electron .",
     "fix": "node_modules/.bin/electron-rebuild"
@@ -13,6 +13,7 @@
     "active-win": "^5.0.0",
     "electron": "^4.1.4",
     "electron-store": "^3.2.0",
+    "electron-tray-window": "^1.2.4",
     "ffi-napi": "^2.4.5",
     "iohook": "^0.4.4",
     "node-process-windows": "0.0.2",
