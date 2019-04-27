@@ -23,7 +23,7 @@ function loadMenu(options, point, display) {
 		piemenu.createWheel(options);
 	} 			
 	// Prevent random error spam from Raphael
-	catch(err) {}		
+	catch(err) {}	
 
 	piemenu.navItems.forEach(n => {
 		n.navigateFunction = () => {	
