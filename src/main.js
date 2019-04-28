@@ -61,8 +61,9 @@ app.on('ready', () => {
 	});
 
 	settingWindow = initWindow("render/settings/settings.html", {
-		frame: false, skipTaskbar: true, alwaysOnTop: true, 
-		resizable: false, icon: "resources/icon.png", tray: true
+		frame: false, skipTaskbar: true, alwaysOnTop: true, resizable: false,
+		icon: "resources/icon.png", height: 600, width: 900, parent: wheelWindow, 
+		tray: true
 	});
 });
 
