@@ -32,7 +32,6 @@ app.on('ready', () => {
 				var { x, y } = display.workArea;
 				wheelWindow.setPosition(x, y);
 				wheelWindow.maximize();
-				wheelWindow.minimize();
 				wheelWindow.focus();
 			}
 			// Send the wheel data to the UI

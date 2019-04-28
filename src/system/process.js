@@ -7,7 +7,8 @@ var pid = 0;
 
 exports.set = function() {
     var proc = activeWin.sync().owner.processId; 
-    pid = proc != process.pid ? proc : pid;    
+    pid = proc != process.pid ? proc : pid;
+    processWindows.focusWindow(process.pid);
 }   
 
 exports.focus = function() {
