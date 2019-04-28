@@ -5,6 +5,7 @@ const EDGE_BUFFER = 200;
 
 function loadMenu(options, point, display) {
 	const { ipcRenderer } = require('electron');
+	var {x, y} = point
 	try {
 		var piemenu = new wheelnav('piemenu');
 		piemenu.initPercent = 1;	
@@ -16,7 +17,11 @@ function loadMenu(options, point, display) {
 		if (angle != 0) {	
 			piemenu.navItemsContinuous = true;
 			piemenu.sliceAngle = angle;
-			piemenu.titleRotateAngle = 0;
+			// Rotate text if the cursor is in the corner
+			if (angle == 22.5) {
+				piemenu.titleRotateAngle = x < display.bounds.x + EDGE_BUFFER ? 0 : 180;
+			}
+			// Apply the appropriate rotation to the menu
 			piemenu.navAngle = angle / 2 + rotation(point, display, options.length);
 		} 
 		// piemenu.navAngle = rotation(point, display, options.length);
@@ -32,7 +37,6 @@ function loadMenu(options, point, display) {
 		}
 	});	
 
-	var {x, y} = point
 	var d = document.getElementById('piemenu');
 	d.style.position = "absolute";
 	// Some funky display math, makes sure the wheel is always centered properly on the cursor
@@ -63,7 +67,7 @@ function sliceAngle(point, display, itemCount) {
 
 function rotation(point, display) {			
 	var { x, y } = point;
-	var {height, width, x: boundX, y: boundY} = display.bounds;
+	var { height, width, x: boundX, y: boundY } = display.bounds;
 	var { atLeft, atRight, atTop, atBottom } = false;
 									
 	if (x < boundX + EDGE_BUFFER) 		   atLeft = true;
