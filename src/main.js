@@ -1,4 +1,3 @@
-const url	     = require('url');
 const path 	     = require('path');
 const process    = require('./system/process');
 const ioHook     = require('iohook');
@@ -69,15 +68,16 @@ app.on('ready', () => {
 function initWindow(file, options) {
 	var win = new BrowserWindow(options);
 	win.loadURL(path.join(__dirname, file));
-	// Initialize with no mouse events enabled
-	if (options.ignoreEvents != undefined)
-		ignoreEvents(win, options.ignoreEvents);
 	// Initialize as a tray window
 	if (options.tray != undefined && options.tray) {
 		trayWindow.setOptions({
-			tray: new Tray(path.join(__dirname, options.icon)), window: win
+			tray: new Tray(path.join(__dirname, options.icon)), 
+			window: win, margin_x: 10, margin_y: 10
 		});
 	}
+	// Initialize with no mouse events enabled
+	if (options.ignoreEvents != undefined)
+		ignoreEvents(win, options.ignoreEvents);
 	return win;
 }
 
