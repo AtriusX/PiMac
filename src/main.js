@@ -12,7 +12,7 @@ app.on('ready', () => {
 	process.set();
 	// Initialize the window
 	wheelWindow = initWindow("render/wheel/wheel.html", {
-		transparent: true, frame: false, skipTaskbar: true, 
+		transparent: true, frame: false, skipTaskbar: true,
 		alwaysOnTop: true, ignoreEvents: true
 	});
 
@@ -31,8 +31,8 @@ app.on('ready', () => {
 				var { x, y } = display.workArea;
 				wheelWindow.setPosition(x, y);
 				wheelWindow.maximize();
-				wheelWindow.focus();
 			}
+			wheelWindow.focus();
 			// Send the wheel data to the UI
 			wheelWindow.webContents.send(
 				"window:show", ["Option 1", "Option 2", "Option 3", "Option 4"], point, display
@@ -45,7 +45,7 @@ app.on('ready', () => {
 		ioHook.on('keyup', (event) => {
 			if (event.keycode != TRIGGER_KEY) return;
 			wheelWindow.webContents.send("window:hide");
-			// Return to the original window
+			// Return to the original window	
 			active = ignoreEvents(wheelWindow, true);
 			process.focus();
 		});
@@ -60,9 +60,11 @@ app.on('ready', () => {
 
 	settingWindow = initWindow("render/settings/settings.html", {
 		frame: false, skipTaskbar: true, alwaysOnTop: true, resizable: false,
-		icon: "resources/icon.png", height: 600, width: 900, parent: wheelWindow, 
+		icon: "resources/icon.png", height: 700, width: 800, parent: wheelWindow, 
 		tray: true
 	});
+
+	// wheelWindow.webContents.openDevTools();
 });
 
 function initWindow(file, options) {
