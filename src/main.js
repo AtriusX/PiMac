@@ -45,7 +45,7 @@ app.on('ready', () => {
 		ioHook.on('keyup', (event) => {
 			if (event.keycode != TRIGGER_KEY) return;
 			wheelWindow.webContents.send("window:hide");
-			// Return to the original window	
+			// Return to the original window
 			active = ignoreEvents(wheelWindow, true);
 			process.focus();
 		});
@@ -53,15 +53,16 @@ app.on('ready', () => {
 		ipcMain.on('window:hidden', () => {
 			ignoreEvents(wheelWindow, true);
 			process.focus();
+			robot.keyTap('backspace');
 		});
 
 		ioHook.start();
 	});
 
 	settingWindow = initWindow("render/settings/settings.html", {
-		frame: false, skipTaskbar: true, alwaysOnTop: true, resizable: false,
-		icon: "resources/icon.png", height: 700, width: 800, parent: wheelWindow, 
-		tray: true
+		frame: false, skipTaskbar: true, alwaysOnTop: true, 
+		resizable: false, icon: "resources/icon.png", height: 700, 
+		width: 800, parent: wheelWindow, tray: true
 	});
 
 	// wheelWindow.webContents.openDevTools();

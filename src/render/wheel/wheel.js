@@ -1,6 +1,5 @@
-const nav 	  = require('wheelnav')
-const Raphael = require('raphael')
-
+const nav 	  = require('wheelnav');
+const Raphael = require('raphael');
 const EDGE_BUFFER = 200;
 
 function loadMenu(options, point, display) {
@@ -32,7 +31,7 @@ function loadMenu(options, point, display) {
 
 	piemenu.navItems.forEach(n => {
 		n.navigateFunction = () => {	
-			unloadMenu(piemenu);		
+			unloadMenu(piemenu);
 			ipcRenderer.send('window:hidden');
 		}
 	});	
@@ -44,7 +43,7 @@ function loadMenu(options, point, display) {
 	d.style.left = x - display.bounds.x - 200 + "px";							
 };
 
-function unloadMenu() {
+function unloadMenu(command) {				
 	// It's stupid that this works without error
 	document.getElementById("piemenu").innerHTML = "";
 }

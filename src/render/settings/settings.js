@@ -1,5 +1,9 @@
-const electron   = require('electron');
-const url	     = require('url');
-const path 	     = require('path');
-const trayWindow = require('electron-tray-window');
-const { app, BrowserWindow } = electron;
+/* Set the width of the sidepanel to 250px and the left margin of the page content to 250px */
+function openNav() {
+	document.getElementById("main").style.left = "250px";
+}
+
+/* Set the width of the sidepanel to 0 and the left margin of the page content to 0 */
+function closeNav() {
+	document.getElementById("main").style.left = 0;
+}

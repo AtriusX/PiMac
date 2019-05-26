@@ -3,8 +3,21 @@
 <head>
 	<title>PiMac Settings</title>
 	<link rel="stylesheet" type="text/css" href="settings.css"/>
+	<link href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css" rel="stylesheet">
+	<script type="text/javascript" src="settings.js"></script>
 </head>
 <body>
-	
+	<div id="sidepanel" class="sidepanel">
+		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+		<a href="#">About</a>
+		<a href="#">Services</a>
+		<a href="#">Clients</a>
+		<a href="#">Contact</a>
+	</div>
+	<div id="main">
+		<button class="openbtn" onclick="openNav()">&#9776; Toggle sidepanel</button>
+		<h2>Collapsed sidepanel</h2>
+		<p>Content...</p>
+	</div>
 </body>
 </html>
