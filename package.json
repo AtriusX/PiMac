@@ -26,7 +26,7 @@
     "autoprefixer": "^9.5.1",
     "electron-packager": "^13.1.1",
     "electron-rebuild": "git+https://github.com/electron/electron-rebuild.git",
-    "postcss": "^8.2.10",
+    "postcss": "^8.2.13",
     "purgecss": "^1.3.0",
     "tailwindcss": "^0.7.4",
     "watch": "^1.0.2"
